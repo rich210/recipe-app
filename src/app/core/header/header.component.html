@@ -1,0 +1,35 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header ">
+      <a style="cursor:pointer" [routerLink]="['/']" class="navbar-brand">Recipe Book</a>
+      <a class="nav navbar-toggler" id="nav-button" (click)="showNav = !showNav">
+          Menu <span class="caret"></span>
+      </a>
+    </div>
+
+
+    <div class="navbar-collapse" [ngClass]="{'collapse-show' : showNav, 'collapse' : !showNav}">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active" ><a style="cursor:pointer" [routerLink]="['/recipeBook']">Recipes</a></li>
+        <li routerLinkActive="active"><a style="cursor:pointer" [routerLink]="['/shoppingList']">Shopping List</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <ng-template [ngIf]="!(authState | async).authenticated">
+          <li><a [routerLink]="'/signup'">Register</a></li>
+          <li><a [routerLink]="'/login'">Log In</a></li>
+        </ng-template>
+        <ng-template [ngIf]="(authState | async).authenticated">
+          <li><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
+          <li class="dropdown" appDropdown >
+            <a style="cursor:pointer" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a style="cursor:pointer" (click)="onSaveData()">Saving Data</a></li>
+              <li><a style="cursor:pointer" (click)="onGetData()" >Feching Data</a></li>
+            </ul>
+          </li>
+        </ng-template>
+      </ul>
+    </div>
+  </div>
+</nav>
+

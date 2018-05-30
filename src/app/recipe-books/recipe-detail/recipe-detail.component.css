@@ -1,0 +1,28 @@
+@media (max-width: 767px) {
+  button.btn{
+    margin-top: 5px;
+  }
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  button.btn{
+    margin-top: 5px;
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  button.btn{
+    margin-top: 25px;
+    margin-bottom: 20px;
+  }
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+
+

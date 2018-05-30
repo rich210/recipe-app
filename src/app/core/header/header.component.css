@@ -1,0 +1,32 @@
+@media (max-width: 767px) {
+  #nav-button {
+    visibility: visible;
+    padding: 15px 15px;
+    float: right;
+    cursor: pointer;
+    color: #777;
+    text-decoration: none;
+
+  }
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #nav-button {
+    visibility: hidden;
+  }
+}
+
+/* // Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #nav-button {
+    visibility: hidden;
+  }
+}
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #nav-button {
+    visibility: hidden;
+  }
+}
