@@ -34,7 +34,7 @@ export class ShoppingListEditComponent implements OnInit, OnDestroy {
             amountType: this.editedItem.amountType != null ? this.editedItem.amountType : '',
             category: this.editedItem.category != null ? this.editedItem.category : ''
           });
-        }else {
+        } else {
           this.editMode = false;
         }
       }

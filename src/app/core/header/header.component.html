@@ -19,13 +19,13 @@
           <li><a class="nav-link" [routerLink]="'/login'">Log In</a></li>
         </ng-template>
         <ng-template [ngIf]="(authState | async).authenticated">
-          <li><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
-          <li class="dropdown" appDropdown >
-            <a class="nav-link" style="cursor:pointer" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a class="nav-link" style="cursor:pointer" (click)="onSaveData()">Saving Data</a></li>
-              <li><a class="nav-link" style="cursor:pointer" (click)="onGetData()" >Feching Data</a></li>
-            </ul>
+          <li><a class="nav-link" style="cursor: pointer" (click)="onLogout()">Logout</a></li>
+          <li class="nav-item dropdown"  >
+            <a appDropdown style="cursor:pointer" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage <span class="caret"></span></a>
+            <div class="dropdown-menu navbar-dark bg-dark" appDropdown>
+              <a class="nav-link" style="cursor:pointer" (click)="onSaveData()">Saving Data</a>
+              <a class="nav-link" style="cursor:pointer" (click)="onGetData()" >Feching Data</a>
+            </div>
           </li>
         </ng-template>
       </ul>
