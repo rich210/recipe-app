@@ -1,13 +1,13 @@
 
 <a style="cursor: pointer" class="list-group-item clearfix" [routerLink]="['/recipeBook', index]" routerLinkActive="active">
   <div class="row">
-    <div class="col-xs-8">
+    <div class="col-8">
       <div class="pull-left">
         <h4 class="list-group-item-heading">{{recipe.name}}</h4>
         <p class="list-group-item-text">{{recipe.description | shorten: 200 }}</p>
       </div>
     </div>
-    <div class="col-xs-4">
+    <div class="col-4">
       <span class="pull-right">
         <img [src]="recipe.imagePath" alt="{{recipe.name}}" class="img-responsive" style="max-height: 100px; max-width: 100px">
     </span>

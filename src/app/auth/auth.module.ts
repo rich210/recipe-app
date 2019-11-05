@@ -1,16 +1,17 @@
-
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { SharedModule } from '../modules/shared.module';
-import { SignupComponent } from './signup/signup.component';
-import { LoginComponent } from './login/login.component';
+import { AuthComponent } from './auth.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    SignupComponent,
-    LoginComponent
-  ],
+  declarations: [AuthComponent],
   imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule.forChild([{ path: '', component: AuthComponent }]),
     SharedModule
   ]
 })

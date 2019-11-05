@@ -1,11 +1,13 @@
 
-import { Observable } from 'rxjs/Rx';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Ingredient } from '../../models/ingredient.model';
 import { Store } from '@ngrx/store';
 
 import * as ShoppingListActions from '../store/shopping.list.actions';
-import * as ShoppingListReducer from '../store/shopping-list.reducers';
+import * as ShoppingListReducer from '../store/shopping-list.reducer';
+import * as fromApp from '../../store/app.reducer';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-shopping-list',
@@ -16,13 +18,23 @@ export class ShoppingListComponent implements OnInit {
   shoppingListState: Observable<ShoppingListReducer.State>;
   isShoppingMode = false;
   selectedIngredients: Array<Ingredient> = [];
+  ingredients : Ingredient[] = [];
+  categories: string[] = [];
+  subscription: Subscription;
+  hasError: boolean = false;
 
-  constructor(private store: Store<ShoppingListReducer.ShoppingListState>) {
+  constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
-    this.shoppingListState = this.store.select('ingredients');
+    this.subscription = this.store.select('shoppingList').subscribe(shoppingListState => {
+        console.log(shoppingListState.ingredients);
+        console.log(shoppingListState.categories);
+        this.ingredients = shoppingListState.ingredients;
+        this.categories = shoppingListState.categories;
+      });
   }
+
   onEditItem(ingredient: Ingredient) {
     if (this.isShoppingMode) {
       const index = this.isInArray(ingredient);

@@ -1,7 +1,7 @@
 import { Ingredient } from '../../models/ingredient.model';
 import { Recipe } from '../../models/recipe.model';
 import * as RecipeActions from './recipe.actions';
-import * as AppReducers from './../../store/app.reducers';
+import * as AppReducers from '../../store/app.reducer';
 
 export interface RecipeState extends AppReducers.AppState {
   recipes: State;

@@ -21,14 +21,10 @@ export class AuthGuard implements CanActivate {
     private store: Store<fromApp.AppState>
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    router: RouterStateSnapshot
-  ):
-    | boolean
-    | UrlTree
-    | Promise<boolean | UrlTree>
-    | Observable<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot,router: RouterStateSnapshot):| boolean
+  | UrlTree
+  | Promise<boolean | UrlTree>
+  | Observable<boolean | UrlTree> {
     return this.store.select('auth').pipe(
       take(1),
       map(authState => {

@@ -1,4 +1,4 @@
-import * as AppReducer from '../../store/app.reducers';
+import * as AppReducer from '../../store/app.reducer';
 import { Ingredient } from '../../models/ingredient.model';
 import * as ShoppingListActions from './shopping.list.actions';
 
@@ -62,8 +62,6 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
       }
     case ShoppingListActions.ADD_INGREDIENTS:
       const recipeIngredients: Ingredient[] = action.payload.ingredients.slice();
-      console.log(recipeIngredients);
-      console.log(action.payload.ingredients);
       let _i = recipeIngredients.length - 1;
       while (_i >= 0) {
         localIndex = state.ingredients.findIndex(
@@ -96,6 +94,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         editedIngredientIndex: -1
       };
     case ShoppingListActions.DELETE_INGREDIENT:
+      // TODO: Try to add filter to the delete statment, Look for Course 354 Min 8
       const oldIngredients = [...state.ingredients];
       oldIngredients.splice(state.editedIngredientIndex, 1);
       return {

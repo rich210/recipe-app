@@ -1,43 +1,43 @@
-<div class="container">
+<div class="container" *ngIf="recipe">
   <div class="row">
-    <div class="col-xs-12">
-      <img src="{{(recipeState | async).recipes[index].imagePath}}" class="img-responsive" style="max-height: 200px; max-width: 200px">
+    <div class="col-12">
+      <img src="{{recipe.imagePath}}" class="img-responsive" style="max-height: 200px; max-width: 200px">
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-      <h1>{{(recipeState | async).recipes[index].name}}</h1>
+    <div class="col-12">
+      <h1>{{recipe.name}}</h1>
     </div>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col-xs-12">
-      <form (ngSubmit)="onAddToShoppingList(form)" #form="ngForm">
-        <div class="col-md-2 col-xs-12 col-lg-1">
+    <div class="col-12 col-md-12">
+      <form (ngSubmit)="onAddToShoppingList(form)" #form="ngForm" class="row">
+        <div class="col-md-2 col-12 col-lg-3">
           <label for="numberOfDays">No. days</label>
           <input type="number" class="form-control" value="1" required name="numberOfDays" id="numberofDays" ngModel [ngModel]="defaultNumberOfDays">
         </div>
-        <div class="col-md-2 col-xs-12 col-lg-2">
+        <div class="col-md-2 col-12 col-lg-3">
           <button class="btn btn-success" type="submit">Add to shopping list</button>
         </div>
-        <div class="col-md-1 col-xs-12 col-lg-2">
+        <div class="col-md-1 col-12 col-lg-3">
           <button class="btn btn-default" (click)="onEditRecipe()">Edit Recipe</button>
         </div>
-        <div class="col-md-1 col-xs-12 col-lg-2">
+        <div class="col-md-1 col-12 col-lg-3">
           <button class="btn btn-danger" (click)="onDeleteRecipe()">Delete Recipe</button>
         </div>
       </form>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-      {{(recipeState | async).recipes[index].description}}
+    <div class="col-12">
+      {{recipe.description}}
     </div>
   </div>
   <br>
   <div class="row">
-    <div class="col-xs-12">
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let ingredient of (recipeState | async).recipes[index].ingredients">{{ingredient.name}} -- {{ingredient.amount}} {{ingredient.amountType}}</li>
+    <div class="col-12">
+      <ul class="list-group" *ngIf="id != -1">
+        <li class="list-group-item" *ngFor="let ingredient of ingredients">{{ingredient.name}} -- {{ingredient.amount}} {{ingredient.amountType}}</li>
       </ul>
     </div>
   </div>

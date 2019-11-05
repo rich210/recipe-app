@@ -1,37 +1,33 @@
 <div class="container">
-    <div class="row" *ngIf="(shoppingListState | async).hasError">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset1 col-md-offset-2">
-          <div class="alert alert-danger" role="alert">
-            {{(shoppingListState | async).errorMessage}}
-          </div>
-        </div>
+  <div class="row" *ngIf="hasError">
+    <div class="col-12 col-sm-10 col-md-8 col-sm-offset1 col-md-offset-2">
+      <div class="alert alert-danger" role="alert">
+        <!-- {{(shoppingListState | async).errorMessage}} -->
       </div>
+    </div>
+  </div>
   <div class="row">
-    <div class="col-xs-10">
+    <div class="col-12 col-md-12">
       <app-shopping-list-edit></app-shopping-list-edit>
       <div class="row" style="margin-top: 20px">
-        <div class="col-xs-12">
+        <div class="col-12 row justify-content-between">
           <button class="btn btn-danger" type="button" (click)="onClearAllShoppingList()">Clear Shopping list</button>
-          <button class="btn btn-info" type="button" (click)="isShoppingMode= !isShoppingMode">{{isShoppingMode? 'Stop Shopping': 'Start Shopping' }}</button>
+          <button class="btn btn-info" type="button"
+            (click)="isShoppingMode= !isShoppingMode">{{isShoppingMode? 'Stop Shopping': 'Start Shopping' }}</button>
         </div>
       </div>
       <hr>
       <div class="row">
-          <div class="row" *ngFor="let category of (shoppingListState | async).categories">
-        <div class="col-xs-12">
+        <div class="col-12 col-md-4" *ngFor="let category of categories">
           <h3>{{ category }}</h3>
-            <ul class="list-group">
-              <a class="list-group-item"
-              style="cursor: pointer"
-              *ngFor="let ingredient of (shoppingListState | async).ingredients | groupBy: category : 'category' ; let i = index;  "
-              (click)="onEditItem(ingredient);"
-              [ngClass]="{'shoppingCar' : (isInArray(ingredient) > -1)}">
-                {{ingredient.name }} ({{ingredient.amount}} {{ingredient.amountType}})
-              </a>
-            </ul>
+          <ul class="list-group">
+            <a class="list-group-item" style="cursor: pointer"
+              *ngFor="let ingredient of ingredients | groupBy: category : 'category' ; let i = index;  "
+              (click)="onEditItem(ingredient);" [ngClass]="{'shoppingCar' : (isInArray(ingredient) > -1)}">
+              {{ingredient.name }} ({{ingredient.amount}} {{ingredient.amountType}})
+            </a>
+          </ul>
         </div>
       </div>
-
     </div>
   </div>
-</div>

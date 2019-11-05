@@ -1,13 +1,10 @@
-import { shoppingListReducer } from './store/shopping-list.reducers';
-import { ShoppingListEffect } from './store/shopping-list.effects';
+import { NgModule } from '@angular/core';
 import { ShoppingListRouting } from './shopping-list-routing.module';
-import { SharedModule } from '../modules/shared.module';
 import { GroupByPipe } from '../shared/group-by.pipe';
 import { ShoppingListEditComponent } from './shopping-list-edit/shopping-list-edit.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { NgModule } from '@angular/core';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,9 +14,8 @@ import { EffectsModule } from '@ngrx/effects';
   ],
   imports: [
     SharedModule,
-    ShoppingListRouting,
-    StoreModule.forFeature('ingredients', shoppingListReducer),
-    EffectsModule.forFeature([ShoppingListEffect])
+    FormsModule,
+    ShoppingListRouting
   ]
 })
 export class ShoppingListModule {}

@@ -1,8 +1,10 @@
 
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store} from '@ngrx/store';
-import * as RecipeReducer from './../store/recipe.reducers';
+import * as fromApp from '../../store/app.reducer';
+import { map } from 'rxjs/operators';
+import { Recipe } from '../../models/recipe.model';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,11 +12,16 @@ import * as RecipeReducer from './../store/recipe.reducers';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit {
-  recipesState: Observable<RecipeReducer.State>;
+  recipes: Recipe[];
+  subscription: Subscription;
 
-  constructor(private store: Store<RecipeReducer.RecipeState>) { }
+  constructor(private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.recipesState = this.store.select('recipes');
+    this.subscription = this.store.select('recipes').pipe(
+      map(recipeState => recipeState.recipes)
+    ).subscribe((recipes: Recipe[]) => {
+      this.recipes = recipes;
+    });
   }
 }

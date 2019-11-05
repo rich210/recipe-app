@@ -1,44 +1,54 @@
 import { Action } from '@ngrx/store';
 
-export const TRY_SIGNUP = 'TRY_SIGNUP';
-export const SIGNUP = 'SIGNUP';
-export const TRY_LOGIN = 'TRY_LOGIN';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const SET_TOKEN = 'SET_TOKEN';
-export const AUTH_ERROR = 'AUTH_ERROR';
+export const LOGIN_START = '[Auth] Login Start';
+export const AUTHENTICATE_SUCCESS = '[Auth] Login';
+export const AUTHENTICATE_FAIL = '[Auth] Login Fail';
+export const LOGOUT = '[Auth] Logout';
+export const SIGNUP_START = '[Auth] Signup Start';
+export const SIGNUP = '[Auth] Signup Start';
+export const AUTO_LOGIN = "[Auth] Auto Login";
+export const CLEAR_ERROR = '[Auth] Clear Error';
 
-export class TrySignup implements Action {
-  readonly type = TRY_SIGNUP;
-  constructor(public payload: { email: string, password: string }) { }
-}
+export class AuthenticateSuccess implements Action {
+  readonly type = AUTHENTICATE_SUCCESS;
 
-export class Signup implements Action {
-  readonly type = SIGNUP;
-}
-
-export class TryLogin implements Action {
-  readonly type = TRY_LOGIN;
-  constructor(public payload: { email: string, password: string }) { }
-}
-
-export class Login implements Action {
-  readonly type = LOGIN;
-}
-
-export class AuthError implements Action {
-  readonly type = AUTH_ERROR;
-  constructor(public payload: { code: string, message: string }) { }
+  constructor(
+    public payload: {
+      email: string;
+      userId: string;
+      token: string;
+      expirationDate: Date;
+    }
+  ) { }
 }
 
 export class Logout implements Action {
   readonly type = LOGOUT;
 }
 
-export class SetToken implements Action {
-  readonly type = SET_TOKEN;
+export class LoginStart implements Action {
+  readonly type = LOGIN_START;
+
+  constructor(public payload: { email: string; password: string }) { }
+}
+
+export class AuthenticateFail implements Action {
+  readonly type = AUTHENTICATE_FAIL;
 
   constructor(public payload: string) { }
 }
 
-export type AuthActions = Signup | Login | Logout | SetToken | TrySignup | AuthError;
+export class SignupStart implements Action {
+  readonly type = SIGNUP_START;
+  constructor(public payload: { email: string; paswword: string }) { }
+}
+
+export class ClearError implements Action {
+  readonly type = CLEAR_ERROR;
+}
+
+export class AutoLogin implements Action {
+  readonly type = AUTO_LOGIN;
+}
+
+export type AuthActions = AuthenticateSuccess | Logout | LoginStart | AuthenticateFail | SignupStart | ClearError | AutoLogin;

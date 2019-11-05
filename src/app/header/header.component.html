@@ -10,24 +10,18 @@
 
     <div class="collapse navbar-collapse" [ngClass]="{'collapse-show' : showNav, 'collapse' : !showNav}">
       <ul class="navbar-nav">
-        <li routerLinkActive="active" ><a class="nav-link" style="cursor:pointer" [routerLink]="['/recipeBook']">Recipes</a></li>
-        <li routerLinkActive="active"><a class="nav-link" style="cursor:pointer" [routerLink]="['/shoppingList']">Shopping List</a></li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated" ><a class="nav-link" style="cursor:pointer" [routerLink]="['/recipeBook']">Recipes</a></li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated"><a class="nav-link" style="cursor:pointer" [routerLink]="['/shoppingList']">Shopping List</a></li>
       </ul>
-      <ul class="navbar-nav">
-        <ng-template [ngIf]="!(authState | async).authenticated">
-          <li><a class="nav-link" [routerLink]="'/signup'">Register</a></li>
-          <li><a class="nav-link" [routerLink]="'/login'">Log In</a></li>
-        </ng-template>
-        <ng-template [ngIf]="(authState | async).authenticated">
-          <li><a class="nav-link" style="cursor: pointer" (click)="onLogout()">Logout</a></li>
-          <li class="nav-item dropdown"  >
+      <ul class="nav navbar-nav navbar-right">
+          <li><a class="nav-link" style="cursor: pointer" (click)="onLogout()" *ngIf="isAuthenticated">Logout</a></li>
+          <li class="nav-item dropdown"  *ngIf="isAuthenticated">
             <a appDropdown style="cursor:pointer" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Manage <span class="caret"></span></a>
-            <div class="dropdown-menu navbar-dark bg-dark" appDropdown>
+            <div class="dropdown-menu navbar-dark bg-dark">
               <a class="nav-link" style="cursor:pointer" (click)="onSaveData()">Saving Data</a>
               <a class="nav-link" style="cursor:pointer" (click)="onGetData()" >Feching Data</a>
             </div>
           </li>
-        </ng-template>
       </ul>
     </div>
 
