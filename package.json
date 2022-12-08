@@ -30,7 +30,7 @@
     "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "bootstrap": "^4.3.1",
     "core-js": "^2.6.9",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "firebase": "^6.6.2",
     "rxjs": "^6.5.3",
     "rxjs-compat": "^6.5.3",
